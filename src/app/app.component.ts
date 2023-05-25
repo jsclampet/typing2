@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faker } from "@faker-js/faker";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'typing2';
+  lorem = faker.lorem.sentence();
+  userInput: string = '';
+
+  onUserInput(value: string) {
+    this.userInput = value;
+  }
+
+  compare(loremLetter: string, userInputLetter: string) {
+    if(!userInputLetter) {
+      return 'pending';
+    }
+    return loremLetter === userInputLetter ? 'correct' : 'incorrect';
+  }
 }
